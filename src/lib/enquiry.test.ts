@@ -65,6 +65,12 @@ describe("sanitiseEnquiry", () => {
     expect(result.areas).toEqual(["Checkout"]);
   });
 
+  it("accepts the lower budget bands", () => {
+    for (const budget of ["Under £5,000", "£5,000 to £10,000"]) {
+      expect(sanitiseEnquiry({ ...valid, budget }).budget).toBe(budget);
+    }
+  });
+
   it("flattens line breaks in single-line fields so they cannot reach email headers", () => {
     const result = sanitiseEnquiry({ ...valid, name: "Jane\r\nBcc: x@evil.test\u0000" });
     expect(result.name).toBe("Jane Bcc: x@evil.test");

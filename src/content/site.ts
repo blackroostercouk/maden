@@ -426,7 +426,14 @@ export const enquiry = {
     "AI features",
     "Replacing a workaround or an app",
   ],
-  budgets: ["£10,000 to £25,000", "£25,000 to £60,000", "£60,000 and above", "To be discussed"],
+  budgets: [
+    "Under £5,000",
+    "£5,000 to £10,000",
+    "£10,000 to £25,000",
+    "£25,000 to £60,000",
+    "£60,000 and above",
+    "To be discussed",
+  ],
   timings: ["As soon as possible", "Within 3 months", "3 to 6 months", "Exploring for now"],
   briefPlaceholder:
     "For example: we pay for four apps to handle wholesale and still export orders to our ERP by hand. Trade customers should see net-30 terms at checkout and orders should sync every hour.",
