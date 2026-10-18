@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { Button } from "@/components/ui";
 import { isAsking, setConsent, subscribe } from "./consent";
@@ -14,7 +15,8 @@ export function CookieBanner() {
       <p className={styles.title}>Cookies</p>
       <p className={styles.text}>
         We&apos;d like to use Google Analytics to see which pages are useful. It sets two cookies
-        (<code>_ga</code> and <code>_ga_*</code>). Nothing loads unless you accept.
+        (<code>_ga</code> and <code>_ga_*</code>). Nothing loads unless you accept.{" "}
+        <Link href="/privacy">More about privacy</Link>.
       </p>
       <div className={styles.actions}>
         <Button size="sm" onClick={() => setConsent("granted")}>

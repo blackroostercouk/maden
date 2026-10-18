@@ -1,0 +1,19 @@
+.page {
+  max-width: 46rem;
+}
+
+.choice {
+  padding: var(--space-3) var(--space-6);
+  border: var(--border-hairline);
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: border-color var(--duration-fast);
+}
+
+.choice:hover {
+  border-color: var(--color-accent);
+}

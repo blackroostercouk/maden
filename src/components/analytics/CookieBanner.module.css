@@ -47,3 +47,8 @@
     bottom: var(--space-6);
   }
 }
+
+.text a {
+  color: var(--color-text);
+  text-underline-offset: 0.2em;
+}
