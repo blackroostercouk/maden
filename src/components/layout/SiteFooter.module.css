@@ -12,8 +12,14 @@
   letter-spacing: var(--letter-spacing-tightest);
 }
 
-.wordmark em {
-  color: var(--color-accent);
+/* The full stop is drawn as a circle: Manrope's own period is squarish at this size */
+.stop {
+  display: inline-block;
+  width: 0.17em;
+  height: 0.17em;
+  margin-left: 0.04em;
+  border-radius: var(--radius-round);
+  background: var(--color-accent);
 }
 
 .meta {

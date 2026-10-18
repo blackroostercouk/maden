@@ -10,7 +10,7 @@ export function SiteFooter() {
       <Container>
         <p className={styles.wordmark} aria-hidden="true" data-scrub="lift">
           {brand.name.toLowerCase()}
-          <em>.</em>
+          <i className={styles.stop} />
         </p>
         <div className={styles.meta}>
           <p>{footer.disclaimer}</p>
