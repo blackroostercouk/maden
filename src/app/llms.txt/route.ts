@@ -22,7 +22,7 @@ export function GET() {
     }),
     "",
     "## Tools",
-    `- [Store intelligence](${siteUrl}/intelligence): analyse a Shopify store's theme, apps and setup.`,
+    `- [Compare stores](${siteUrl}/intelligence): compare your Shopify store with a competitor's and see which gaps are worth closing.`,
     "",
   ];
   return new Response(lines.join("\n"), {

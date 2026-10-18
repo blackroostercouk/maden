@@ -6,6 +6,7 @@ import { WeaveCanvas } from "@/components/motion";
 import { Backdrop } from "@/components/ui";
 import type { Report } from "@/lib/analyse/report";
 import { STEPS, normaliseUrl, notices, type NoticeCode } from "./helpers";
+import { CompareView } from "./CompareView";
 import { ReportView } from "./ReportView";
 import "./intelligence.css";
 
@@ -13,7 +14,7 @@ type View =
   | { name: "idle" }
   | { name: "progress"; host: string }
   | { name: "notice"; host: string; code: NoticeCode }
-  | { name: "report"; report: Report };
+  | { name: "report"; report: Report; rival?: Report };
 
 class AnalysisError extends Error {
   constructor(readonly code: NoticeCode) {
@@ -52,6 +53,17 @@ const Arrow = () => (
 const reduced = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const cleanPaste = (input: HTMLInputElement) =>
+  setTimeout(() => {
+    input.value = input.value.trim().replace(/^https?:\/\//i, "");
+  });
+
+const gets = [
+  { title: "Side by side", text: "Catalogue, apps, script weight, plan and markets, with the leader marked." },
+  { title: "The gaps", text: "The apps each store runs that the other doesn't, found from their public pages." },
+  { title: "What we'd do", text: "Which of our ready-made apps, or a custom one, would close each gap, and why." },
+];
+
 const detects = [
   "Products and variants",
   "Collections",
@@ -69,9 +81,11 @@ export function Intelligence() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [step, setStep] = useState(0);
+  const [showing, setShowing] = useState<"you" | "them">("you");
   const [tip, setTip] = useState<{ title: string; text: string; x: number; top: number } | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const rivalRef = useRef<HTMLInputElement>(null);
   const progressRef = useRef<HTMLElement>(null);
   const noticeRef = useRef<HTMLDivElement>(null);
   const reportRef = useRef<HTMLDivElement>(null);
@@ -103,34 +117,57 @@ export function Intelligence() {
       inputRef.current?.focus();
       return;
     }
+    const rivalText = rivalRef.current?.value.trim() ?? "";
+    let rival: string | null = null;
+    if (rivalText) {
+      const second = normaliseUrl(rivalText);
+      if ("error" in second) {
+        setError(second.error);
+        rivalRef.current?.focus();
+        return;
+      }
+      if (second.host === target.host) {
+        setError("Enter a different store to compare with.");
+        rivalRef.current?.focus();
+        return;
+      }
+      rival = second.host;
+    }
     if (inputRef.current) inputRef.current.value = target.host;
+    if (rivalRef.current && rival) rivalRef.current.value = rival;
     setError("");
     setBusy(true);
-    startProgress(target.host);
+    setShowing("you");
+    startProgress(rival ? `${target.host} and ${rival}` : target.host);
     requestAnimationFrame(() => scrollTo(progressRef.current));
-    try {
-      const report = await analyseStore(target.host);
-      clearTimeout(timer.current);
-      setStep(STEPS.length);
-      await new Promise((resolve) => setTimeout(resolve, reduced() ? 0 : 450));
-      setView({ name: "report", report });
-    } catch (err) {
-      clearTimeout(timer.current);
+
+    const hosts = rival ? [target.host, rival] : [target.host];
+    const results = await Promise.allSettled(hosts.map(analyseStore));
+    clearTimeout(timer.current);
+    const failed = results.findIndex((r) => r.status === "rejected");
+    if (failed !== -1) {
+      const reason = (results[failed] as PromiseRejectedResult).reason;
       setView({
         name: "notice",
-        host: target.host,
-        code: err instanceof AnalysisError ? err.code : "unreachable",
+        host: hosts[failed],
+        code: reason instanceof AnalysisError ? reason.code : "unreachable",
       });
-    } finally {
-      setBusy(false);
+    } else {
+      setStep(STEPS.length);
+      await new Promise((resolve) => setTimeout(resolve, reduced() ? 0 : 450));
+      const [first, second] = results.map((r) => (r as PromiseFulfilledResult<Report>).value);
+      setView({ name: "report", report: first, rival: second });
     }
+    setBusy(false);
   };
 
   // Bring the new view into sight and move focus to it
   useEffect(() => {
     if (view.name === "report") {
       scrollTo(reportRef.current);
-      reportRef.current?.querySelector<HTMLElement>("#reportTitle")?.focus({ preventScroll: true });
+      reportRef.current
+        ?.querySelector<HTMLElement>("#compareTitle, #reportTitle")
+        ?.focus({ preventScroll: true });
     } else if (view.name === "notice") {
       noticeRef.current?.focus({ preventScroll: true });
       scrollTo(noticeRef.current?.parentElement ?? null);
@@ -138,6 +175,7 @@ export function Intelligence() {
   }, [view.name]);
 
   const retry = useCallback(() => {
+    if (rivalRef.current) rivalRef.current.value = "";
     if (inputRef.current) {
       inputRef.current.value = "";
       inputRef.current.focus({ preventScroll: true });
@@ -231,6 +269,8 @@ export function Intelligence() {
 
   const notice = view.name === "notice" ? (notices[view.code] ?? notices.unreachable)(view.host) : null;
   const report = view.name === "report" ? view.report : null;
+  const rival = view.name === "report" ? view.rival : undefined;
+  const shown = rival && showing === "them" ? rival : report;
   const apps = report?.apps.length ?? 0;
 
   return (
@@ -240,50 +280,72 @@ export function Intelligence() {
         <WeaveCanvas />
         <div className="container">
           <div className="hero-inner">
-            <p className="eyebrow">Store intelligence</p>
+            <p className="eyebrow">Store comparison</p>
             <h1 id="heroTitle" className="h-display h-3xl">
-              <span className="line">See how any Shopify</span>
-              <span className="line accent italic">store is cut.</span>
+              <span className="line">See how your store</span>
+              <span className="line accent italic">stacks up.</span>
             </h1>
             <p className="lede">
-              Enter a store address. We read its public storefront and report the catalogue, the collections,
-              the plan it&apos;s likely on and every app we can find.
+              Enter your store and, if you like, a competitor&apos;s. We read both public storefronts, show
+              where they differ, and say which gaps are worth closing. One store alone gets a full report.
             </p>
 
             <form className={`search${error ? " invalid" : ""}`} onSubmit={submit} noValidate>
-              <label className="search-label" htmlFor="storeUrl">
-                Store address
-              </label>
-              <div className="search-row">
-                <span className="search-prefix" aria-hidden="true">
-                  https://
-                </span>
-                <input
-                  ref={inputRef}
-                  className="search-input"
-                  id="storeUrl"
-                  name="url"
-                  type="text"
-                  inputMode="url"
-                  autoComplete="url"
-                  spellCheck={false}
-                  autoCapitalize="off"
-                  placeholder="yourcompetitor.com"
-                  aria-describedby="searchHelp searchError"
-                  aria-invalid={error ? true : undefined}
-                  required
-                  onChange={() => error && setError("")}
-                  onPaste={() =>
-                    setTimeout(() => {
-                      if (inputRef.current)
-                        inputRef.current.value = inputRef.current.value.trim().replace(/^https?:\/\//i, "");
-                    })
-                  }
-                />
-                <button className="btn" type="submit" disabled={busy}>
-                  {busy ? "Analysing… " : "Analyse store "}
-                  <Arrow />
-                </button>
+              <div className="search-field">
+                <label className="search-label" htmlFor="storeUrl">
+                  Your store
+                </label>
+                <div className="search-row">
+                  <span className="search-prefix" aria-hidden="true">
+                    https://
+                  </span>
+                  <input
+                    ref={inputRef}
+                    className="search-input"
+                    id="storeUrl"
+                    name="url"
+                    type="text"
+                    inputMode="url"
+                    autoComplete="url"
+                    spellCheck={false}
+                    autoCapitalize="off"
+                    placeholder="yourstore.com"
+                    aria-describedby="searchHelp searchError"
+                    aria-invalid={error ? true : undefined}
+                    required
+                    onChange={() => error && setError("")}
+                    onPaste={(e) => cleanPaste(e.currentTarget)}
+                  />
+                </div>
+              </div>
+              <div className="search-field">
+                <label className="search-label" htmlFor="rivalUrl">
+                  A competitor <span className="muted">(optional)</span>
+                </label>
+                <div className="search-row">
+                  <span className="search-prefix" aria-hidden="true">
+                    https://
+                  </span>
+                  <input
+                    ref={rivalRef}
+                    className="search-input"
+                    id="rivalUrl"
+                    name="rival"
+                    type="text"
+                    inputMode="url"
+                    autoComplete="off"
+                    spellCheck={false}
+                    autoCapitalize="off"
+                    placeholder="competitor.com"
+                    aria-describedby="searchHelp searchError"
+                    onChange={() => error && setError("")}
+                    onPaste={(e) => cleanPaste(e.currentTarget)}
+                  />
+                  <button className="btn" type="submit" disabled={busy}>
+                    {busy ? "Analysing… " : "Analyse "}
+                    <Arrow />
+                  </button>
+                </div>
               </div>
               <p className="search-error" id="searchError" role="alert">
                 {error}
@@ -302,6 +364,19 @@ export function Intelligence() {
               ))}
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section className="gets" aria-label="What you get">
+        <div className="container">
+          <ul className="gets-grid">
+            {gets.map((item) => (
+              <li key={item.title}>
+                <h2>{item.title}</h2>
+                <p>{item.text}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -356,7 +431,17 @@ export function Intelligence() {
       </section>
 
       <div ref={reportRef} hidden={view.name !== "report"}>
-        {report && <ReportView key={report.analysedAt} report={report} onRetry={retry} onCopy={copy} />}
+        {report && rival && (
+          <CompareView you={report} them={rival} onRetry={retry} showing={showing} onShow={setShowing} />
+        )}
+        {shown && (
+          <ReportView
+            key={`${shown.query}-${shown.analysedAt}`}
+            report={shown}
+            onRetry={retry}
+            onCopy={copy}
+          />
+        )}
       </div>
 
       <section className="cta" aria-labelledby="ctaTitle">
@@ -364,7 +449,9 @@ export function Intelligence() {
           <div style={{ display: "grid", gap: "var(--space-5)" }}>
             <p className="eyebrow">Made to measure</p>
             <h2 className="h-display h-2xl" id="ctaTitle">
-              {report
+              {rival && report
+                ? `${report.store.name} and ${rival.store.name}: where would you close the gap?`
+                : report
                 ? `${report.store.name} runs ${apps} ${apps === 1 ? "app" : "apps"}. What is yours missing?`
                 : "Something your store needs that no app does?"}
             </h2>

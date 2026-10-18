@@ -3,9 +3,9 @@ import { Intelligence } from "@/components/intelligence/Intelligence";
 import { MotionStart } from "@/components/motion";
 import { brand } from "@/content/site";
 
-const title = `Store Intelligence | ${brand.legalName}`;
+const title = `Compare Shopify Stores | ${brand.legalName}`;
 const description =
-  "Analyse any Shopify store: catalogue size, collections, theme, plan signals and the apps it runs.";
+  "Compare your Shopify store with a competitor's: catalogue, apps, script weight and plan signals, with suggestions for the gaps worth closing.";
 
 export const metadata: Metadata = {
   title,

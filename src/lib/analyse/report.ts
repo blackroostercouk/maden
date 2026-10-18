@@ -65,6 +65,7 @@ const pageCategory: Record<AppCategory, string> = {
   "email-sms": "Email and SMS",
   subscriptions: "Subscriptions",
   loyalty: "Loyalty and referrals",
+  wishlist: "Wishlists and favourites",
   support: "Customer support",
   "page-builders": "Page builders",
   search: "Search and merchandising",

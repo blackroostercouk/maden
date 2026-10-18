@@ -29,7 +29,7 @@ export const navigation: NavLink[] = [
   { href: "/products", label: "Products" },
   { href: "#plans", label: "Plus and other plans", short: "Plans" },
   { href: "#process", label: "How it works" },
-  { href: "/intelligence", label: "Store intelligence", short: "Intelligence" },
+  { href: "/intelligence", label: "Compare stores", short: "Compare" },
 ];
 
 export const primaryCta = { href: "#enquire", label: "Begin a conversation" } as const;

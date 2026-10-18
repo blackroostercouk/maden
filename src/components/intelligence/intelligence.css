@@ -250,3 +250,25 @@
 .intel *::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
 }
 .intel .fine{max-width:72ch;padding-block:var(--space-8) var(--space-12);font-size:var(--font-size-xs);color:var(--color-text-muted)}
+.intel .gets{border-bottom:var(--border-hairline)}
+.intel .gets-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-grid-fluid);padding-block:var(--space-block-fluid)}
+.intel .gets-grid li{display:grid;gap:var(--space-2);align-content:start}
+.intel .gets-grid h2{font-family:var(--font-display);font-weight:500;font-size:var(--font-size-lg)}
+.intel .gets-grid p{color:var(--color-text-muted);font-size:var(--font-size-sm)}
+.intel .search-field{display:grid;gap:var(--space-2)}
+.intel .search-field + .search-field{margin-top:var(--space-4)}
+.intel .cmp-table{width:100%;border-collapse:collapse;font-size:var(--font-size-sm)}
+.intel .cmp-table th,.intel .cmp-table td{padding:var(--space-4) var(--space-3);text-align:left;border-bottom:var(--border-hairline);font-weight:400}
+.intel .cmp-table thead th{font-family:var(--font-display);font-weight:500;color:var(--color-text)}
+.intel .cmp-table tbody th{color:var(--color-text-muted)}
+.intel .cmp-table td.lead{color:var(--color-accent);font-weight:500}
+.intel .cmp-note{margin-top:var(--space-3)}
+.intel .cmp-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-grid-fluid)}
+.intel .cmp-col{display:grid;gap:var(--space-4);align-content:start}
+.intel .cmp-col h3{font-family:var(--font-display);font-weight:500;font-size:var(--font-size-md)}
+.intel .cmp-col .chips{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.intel .cmp-suggest{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-grid-fluid)}
+.intel .cmp-card{display:grid;gap:var(--space-4);align-content:start;padding:var(--space-panel-fluid);background:var(--color-surface);border:var(--border-hairline);border-radius:var(--radius-md)}
+.intel .cmp-card h3{font-family:var(--font-display);font-weight:500;font-size:var(--font-size-lg)}
+.intel .cmp-card .btn{justify-self:start}
+@media (max-width:900px){.intel .gets-grid,.intel .cmp-cols,.intel .cmp-suggest{grid-template-columns:1fr}}

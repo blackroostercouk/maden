@@ -6,6 +6,7 @@ export type AppCategory =
   | "email-sms"
   | "subscriptions"
   | "loyalty"
+  | "wishlist"
   | "support"
   | "page-builders"
   | "search"

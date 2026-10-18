@@ -20,6 +20,7 @@ export const categoryLabels: Record<AppCategory, string> = {
   "email-sms": "Email and SMS",
   subscriptions: "Subscriptions",
   loyalty: "Loyalty and rewards",
+  wishlist: "Wishlists and favourites",
   support: "Support and chat",
   "page-builders": "Page builders",
   search: "Search and personalisation",
@@ -37,6 +38,7 @@ export const categoryOrder: AppCategory[] = [
   "email-sms",
   "subscriptions",
   "loyalty",
+  "wishlist",
   "upsell",
   "search",
   "page-builders",
@@ -157,6 +159,11 @@ export const signatures: Signature[] = [
   // Loyalty
   { id: "smile", name: "Smile.io", category: "loyalty", hosts: ["smile.io"] },
   { id: "loyaltylion", name: "LoyaltyLion", category: "loyalty", hosts: ["loyaltylion.com"] },
+
+  // Wishlists and favourites
+  { id: "swym", name: "Swym Wishlist", category: "wishlist", hosts: ["swymrelay.com", "swym.it"] },
+  { id: "growave", name: "Growave", category: "wishlist", hosts: ["growave.io"] },
+  { id: "wishlisthero", name: "Wishlist Hero", category: "wishlist", hosts: ["wishlisthero.com"] },
 
   // Support and chat
   { id: "gorgias", name: "Gorgias", category: "support", hosts: ["gorgias.chat", "gorgias.io"] },
