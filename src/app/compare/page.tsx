@@ -10,7 +10,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: "/intelligence" },
+  alternates: { canonical: "/compare" },
   openGraph: { title, description, type: "website" },
 };
 

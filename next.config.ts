@@ -39,12 +39,15 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
+  async redirects() {
+    return [{ source: "/intelligence", destination: "/compare", permanent: true }];
+  },
   async headers() {
     return [
-      { source: "/((?!intelligence$).*)", headers: securityHeaders(policy()) },
+      { source: "/((?!compare$).*)", headers: securityHeaders(policy()) },
       {
         // The report shows product photos from Shopify's image host
-        source: "/intelligence",
+        source: "/compare",
         headers: securityHeaders(policy({ img: "https://cdn.shopify.com" })),
       },
     ];

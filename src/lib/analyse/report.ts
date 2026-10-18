@@ -2,7 +2,7 @@ import { categoryLabels, categoryOrder } from "./signatures";
 import type { AppCategory, AppScope, PriceBucket, StoreAnalysis } from "./types";
 
 /**
- * The shape the store intelligence page renders (public/intelligence.html,
+ * The shape the store comparison page renders (src/components/intelligence,
  * "DATA CONTRACT"). Everything on that page is read from this object.
  */
 export type Report = {

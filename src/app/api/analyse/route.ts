@@ -5,7 +5,7 @@ import { guardJsonPost } from "@/lib/server/request";
 
 /**
  * Store intelligence: reads a public Shopify store and answers with the report
- * the page at /intelligence renders. Each call fetches several pages, so it is
+ * the page at /compare renders. Each call fetches several pages, so it is
  * limited per address.
  */
 const allow = createRateLimit({ limit: 12, windowMs: 10 * 60 * 1000 });

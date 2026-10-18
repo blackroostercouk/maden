@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products",
     ...productSlugs.map((slug) => `/products/${slug}`),
     ...landingSlugs.map((slug) => `/custom-apps/${slug}`),
-    "/intelligence",
+    "/compare",
   ];
   return paths.map((path) => ({
     url: `${siteUrl}${path}`,

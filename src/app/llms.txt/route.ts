@@ -22,7 +22,7 @@ export function GET() {
     }),
     "",
     "## Tools",
-    `- [Compare stores](${siteUrl}/intelligence): compare your Shopify store with a competitor's and see which gaps are worth closing.`,
+    `- [Compare stores](${siteUrl}/compare): compare your Shopify store with a competitor's and see which gaps are worth closing.`,
     "",
   ];
   return new Response(lines.join("\n"), {
