@@ -224,12 +224,12 @@
 
 /* Seven links and a button need about 1280px; below that the menu takes over */
 @media (max-width: 1279px) {
-  .link,
-  .cta {
+  .nav .link,
+  .nav .cta {
     display: none;
   }
 
-  .menuButton {
+  .nav .menuButton {
     display: inline-flex;
   }
 }
