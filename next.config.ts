@@ -8,14 +8,21 @@ const isDev = process.env.NODE_ENV === "development";
  * needs eval (React debugging) and websockets (hot reload).
  * `extra` adds the few outside origins a page is allowed to use.
  */
+// Google Analytics: its script, the beacons it sends, and its tracking pixel
+const analytics = {
+  script: "https://www.googletagmanager.com",
+  connect: "https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
+  img: "https://*.google-analytics.com https://*.googletagmanager.com",
+};
+
 const policy = (extra: { script?: string; img?: string } = {}) =>
   [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${extra.script ? ` ${extra.script}` : ""}${isDev ? " 'unsafe-eval'" : ""}`,
+    `script-src 'self' 'unsafe-inline' ${analytics.script}${extra.script ? ` ${extra.script}` : ""}${isDev ? " 'unsafe-eval'" : ""}`,
     "style-src 'self' 'unsafe-inline'",
-    `img-src 'self' blob: data:${extra.img ? ` ${extra.img}` : ""}`,
+    `img-src 'self' blob: data: ${analytics.img}${extra.img ? ` ${extra.img}` : ""}`,
     "font-src 'self'",
-    `connect-src 'self'${isDev ? " ws: wss:" : ""}`,
+    `connect-src 'self' ${analytics.connect}${isDev ? " ws: wss:" : ""}`,
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",

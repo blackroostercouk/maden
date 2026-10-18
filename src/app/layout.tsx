@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { GoogleAnalytics } from "@/components/analytics";
 import { SiteFooter, SiteHeader } from "@/components/layout";
 import { MotionProvider } from "@/components/motion";
 import { brand, siteUrl } from "@/content/site";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main id="main">{children}</main>
           <SiteFooter />
         </MotionProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );
