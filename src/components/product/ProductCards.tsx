@@ -1,6 +1,5 @@
 import { Heading, Photo, Tag, Text } from "@/components/ui";
 import { allProducts } from "@/content/products";
-import { productCopy } from "@/content/products";
 import { productImages } from "./ProductPage";
 import type { ProductSlug } from "@/content/products";
 import styles from "./Product.module.css";

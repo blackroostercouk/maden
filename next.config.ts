@@ -39,23 +39,13 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
-  // The store intelligence page is a standalone HTML file in public/
-  async rewrites() {
-    return [{ source: "/intelligence", destination: "/intelligence.html" }];
-  },
-  async redirects() {
-    return [{ source: "/intelligence.html", destination: "/intelligence", permanent: false }];
-  },
   async headers() {
     return [
       { source: "/((?!intelligence$).*)", headers: securityHeaders(policy()) },
       {
-        // The page draws its background with three.js from jsDelivr (pinned version)
-        // and will show product photos from Shopify's image host
+        // The report shows product photos from Shopify's image host
         source: "/intelligence",
-        headers: securityHeaders(
-          policy({ script: "https://cdn.jsdelivr.net", img: "https://cdn.shopify.com" }),
-        ),
+        headers: securityHeaders(policy({ img: "https://cdn.shopify.com" })),
       },
     ];
   },
