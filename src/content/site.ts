@@ -19,6 +19,9 @@ export const brand = {
 
 export type NavLink = { href: `#${string}` | `/${string}`; label: string; short?: string };
 
+/** Public address of the site, used for canonical links and the sitemap. */
+export const siteUrl = "https://moden.studio";
+
 export const navigation: NavLink[] = [
   { href: "#fit", label: "Why custom" },
   { href: "#build", label: "What we build" },
