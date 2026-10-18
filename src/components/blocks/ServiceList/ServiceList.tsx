@@ -1,4 +1,5 @@
 import { Heading, Icon, Tag, Text } from "@/components/ui";
+import { cx } from "@/lib/cx";
 import styles from "./ServiceList.module.css";
 
 export type Service = {
@@ -18,12 +19,12 @@ export function ServiceList({ items }: { items: readonly Service[] }) {
         <li key={item.title} className={styles.row} data-reveal="stagger">
           <Heading as="h3" size="xl" className={styles.title}>
             {item.href ? (
-              <a href={item.href} className={styles.link}>
+              <a href={item.href} className={cx(styles.link, styles.label)}>
                 {item.title}
                 <Icon name="arrowRight" size="sm" className={styles.arrow} />
               </a>
             ) : (
-              item.title
+              <span className={styles.label}>{item.title}</span>
             )}
           </Heading>
           <Text tone="muted" className={styles.text}>

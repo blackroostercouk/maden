@@ -30,15 +30,22 @@
   transform: scaleX(1);
 }
 
+/* The reveal animation owns the heading's transform, so the hover nudge lives on an inner element */
 .title {
-  transition:
-    transform 0.6s var(--ease-out),
-    color var(--duration-base);
+  transition: color var(--duration-base);
+}
+
+.label {
+  display: inline-block;
+  transition: transform 0.6s var(--ease-out);
 }
 
 .row:hover .title {
-  transform: translateX(0.5rem);
   color: var(--color-accent);
+}
+
+.row:hover .label {
+  transform: translateX(0.5rem);
 }
 
 /* The whole row is clickable; the arrow slides in on hover */
@@ -80,6 +87,8 @@
 @media (--bp-md-down) {
   .row {
     grid-template-columns: minmax(0, 1fr) auto;
+    /* Baseline alignment pushes a wrapped title down into the text below it */
+    align-items: start;
   }
 
   .text {
