@@ -224,7 +224,8 @@
 
 /* Seven links and a button need about 1280px; below that the menu takes over */
 @media (max-width: 1279px) {
-  .link {
+  .link,
+  .cta {
     display: none;
   }
 
@@ -235,12 +236,6 @@
 
 @media (max-width: 1499px) {
   .descriptor {
-    display: none;
-  }
-}
-
-@media (--bp-xs-down) {
-  .cta {
     display: none;
   }
 }
