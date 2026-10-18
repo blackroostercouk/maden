@@ -52,6 +52,7 @@ export const productCopy = {
   trustTitle: "Finished, tested and yours alone.",
   trust: [
     { title: "Installed privately,", text: "on your store only." },
+    { title: "No upgrade messages,", text: "banners or locked features in your admin." },
     { title: "Tested on a real basket", text: "with you before launch." },
     { title: "Rules edited by your team,", text: "no developer needed." },
     { title: "Supported after launch,", text: "by the people who built it." },

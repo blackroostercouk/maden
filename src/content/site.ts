@@ -97,6 +97,12 @@ export const whyCustom = {
       ours: "One app that loads only where it's used, tested against your Core Web Vitals before launch.",
     },
     {
+      aspect: "Upgrades",
+      theirs:
+        "Free and lower plans come with upgrade banners, locked features and pop-ups in your admin, pushing you to a higher tier.",
+      ours: "No upgrade messages, no banners, no locked features. The app does its job and stays quiet.",
+    },
+    {
       aspect: "Ownership",
       theirs: "You rent access. Stop paying and it stops working.",
       ours: "Source code in your GitHub organisation. It keeps working whoever maintains it.",
