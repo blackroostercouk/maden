@@ -61,7 +61,8 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
+  gap: clamp(var(--space-5), 1.8vw, var(--space-8));
+  white-space: nowrap;
 }
 
 .link {
@@ -221,7 +222,8 @@
   }
 }
 
-@media (--bp-lg-down) {
+/* Seven links and a button need about 1280px; below that the menu takes over */
+@media (max-width: 1279px) {
   .link {
     display: none;
   }
@@ -229,7 +231,9 @@
   .menuButton {
     display: inline-flex;
   }
+}
 
+@media (max-width: 1499px) {
   .descriptor {
     display: none;
   }
