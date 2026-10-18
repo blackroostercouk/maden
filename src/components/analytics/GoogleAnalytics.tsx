@@ -1,10 +1,15 @@
+"use client";
+
 import Script from "next/script";
+import { useSyncExternalStore } from "react";
+import { readConsent, subscribe } from "./consent";
 
 const MEASUREMENT_ID = "G-HGFZ6N8783";
 
-/** Google Analytics 4. Loads after the page is interactive, and only in production so local work isn't counted. */
+/** Google Analytics 4. Loads only in production and only after the visitor accepts cookies. */
 export function GoogleAnalytics() {
-  if (process.env.NODE_ENV !== "production") return null;
+  const consent = useSyncExternalStore(subscribe, readConsent, () => null);
+  if (process.env.NODE_ENV !== "production" || consent !== "granted") return null;
   return (
     <>
       <Script

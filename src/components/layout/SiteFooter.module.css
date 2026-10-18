@@ -30,3 +30,18 @@
 .meta p {
   max-width: var(--measure-wide);
 }
+
+.cookieLink {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.cookieLink:hover {
+  color: var(--color-text);
+}

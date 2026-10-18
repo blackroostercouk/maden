@@ -1,3 +1,4 @@
+import { CookieSettings } from "@/components/analytics";
 import { Container } from "@/components/ui";
 import { brand, footer } from "@/content/site";
 import styles from "./SiteFooter.module.css";
@@ -14,6 +15,8 @@ export function SiteFooter() {
           <p>{footer.disclaimer}</p>
           <p>
             &copy; {brand.year} {brand.legalName}, {brand.location}
+            {" · "}
+            <CookieSettings className={styles.cookieLink} />
           </p>
         </div>
       </Container>
