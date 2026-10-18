@@ -14,7 +14,7 @@ export const brand = {
   year: 2026,
   title: "Custom Shopify Apps | Moden",
   description:
-    "Custom Shopify apps for the things no app does. Fixed price, code in your name, built by senior developers for Shopify Plus and every other plan.",
+    "Custom Shopify apps for the things no app does. Fixed price, code in your name, built for Shopify Plus and every other plan.",
 } as const;
 
 export type NavLink = { href: `#${string}` | `/${string}`; label: string; short?: string };
@@ -62,7 +62,7 @@ export const statement = {
   figure: {
     alt: "A hand sketching an app wireframe in a notebook at a dark wooden desk, with interface sketches pinned to a green wall behind and a laptop beside it",
     caption: "Built around your operations, one brand at a time.",
-    credit: "London studio, working with brands across the UK and Europe",
+    credit: "Fixed price, and the code is yours.",
   },
 } as const;
 
@@ -320,7 +320,7 @@ export const process = {
     {
       name: "Build",
       duration: "3 to 8 weeks",
-      text: "We build in weekly increments. Every change is reviewed by a second senior developer and tested before it reaches your preview. Each Friday you get a preview link and a short note on what changed.",
+      text: "We build in weekly increments. Every change is reviewed by a second developer and tested before it reaches your preview. Each Friday you get a preview link and a short note on what changed.",
     },
     {
       name: "Launch",
@@ -338,16 +338,16 @@ export const process = {
 /* --------------------------------------------------------------- Craft */
 export const craft = {
   eyebrow: "Who builds it",
-  title: "Senior hands on every line of code.",
-  lede: "Your app is written by senior developers who have shipped Shopify apps before. Every change is checked by a second senior and tested before it goes anywhere near your store.",
+  title: "Every line checked by a second pair of eyes.",
+  lede: "Your app is written by the people on your first call. Every change is checked by a second developer and tested before it goes anywhere near your store.",
   principles: [
     {
-      title: "No juniors.",
-      text: "Nobody learns the platform on your project. The people on the first call are the people who write the code.",
+      title: "One team, start to finish.",
+      text: "Nobody hands your project off halfway. The people on the first call are the people who write the code.",
     },
     {
       title: "No unchecked AI code.",
-      text: "Code that goes to your store is written by people who can explain every line of it, and reviewed by another senior before it ships.",
+      text: "Code that goes to your store is written by people who can explain every line of it, and reviewed by a second developer before it ships.",
     },
     {
       title: "Small on purpose.",
@@ -361,9 +361,9 @@ export const craft = {
   review: {
     title: "Trade pricing rules",
     status: "Ready to release",
-    meta: "Change 212, written by a senior developer",
+    meta: "Change 212, written by a developer",
     checks: [
-      "Reviewed and approved by a second senior developer",
+      "Reviewed and approved by a second developer",
       "48 automated tests passed",
       "Checkout tested on a development store with your catalogue",
       "Page speed unchanged on product and cart pages",
@@ -372,7 +372,7 @@ export const craft = {
     action: "Release to live store",
   },
   sceneLabel:
-    "Example code review: a pricing change reviewed by a second senior developer, 48 automated tests passed, checkout tested on a development store and page speed unchanged, ready to release.",
+    "Example code review: a pricing change reviewed by a second developer, 48 automated tests passed, checkout tested on a development store and page speed unchanged, ready to release.",
 } as const;
 
 /* ------------------------------------------------------------ Handover */

@@ -22,6 +22,23 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: brand.title, description: brand.description },
 };
 
+const organisation = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: brand.legalName,
+    url: siteUrl,
+    description: brand.description,
+    logo: `${siteUrl}/icon.svg`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: brand.name,
+    url: siteUrl,
+  },
+];
+
 export const viewport: Viewport = {
   themeColor,
   colorScheme: "dark",
@@ -32,6 +49,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en-GB" className={`${bodoni.variable} ${hanken.variable} ${manrope.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organisation).replace(/</g, "\\u003c") }}
+        />
         <a className="skip-link" href="#main">
           Skip to content
         </a>
