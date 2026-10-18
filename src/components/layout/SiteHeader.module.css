@@ -22,6 +22,8 @@
 }
 
 .mark {
+  flex-shrink: 0;
+  white-space: nowrap;
   display: flex;
   align-items: baseline;
   gap: var(--space-2);
@@ -32,6 +34,9 @@
 }
 
 .wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-tightest);
 }
@@ -101,19 +106,119 @@
   cursor: pointer;
 }
 
-.mobileNav {
-  display: grid;
-  gap: var(--space-1);
-  padding-block: var(--space-1-5) var(--space-5);
+/* Full-screen menu. It sits outside the header because the header's blur would otherwise trap it */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  padding: env(safe-area-inset-top, 0px) var(--gutter-right) max(var(--space-6), env(safe-area-inset-bottom, 0px)) var(--gutter-left);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(90% 50% at 100% 0%, color-mix(in srgb, var(--color-accent-strong) 28%, transparent), transparent 70%),
+    var(--color-bg);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    visibility 0s linear var(--duration-base);
 }
 
-.mobileNav a {
-  padding-block: var(--space-1-5);
-  border-top: var(--border-hairline);
+.menuOpen {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.menuBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-4);
+}
+
+.menuNav {
+  display: grid;
+  align-content: center;
+  flex: 1;
+  padding-block: var(--space-6);
+}
+
+.menuNav ol {
+  display: grid;
+}
+
+.menuNav li,
+.menuFoot {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out);
+}
+
+.menuOpen .menuNav li,
+.menuOpen .menuFoot {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(80ms + var(--i, 0) * 55ms);
+}
+
+.menuNav a {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr auto;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+  border-bottom: var(--border-hairline);
   font-family: var(--font-display);
   font-weight: var(--font-weight-display-small);
-  font-size: var(--font-size-xl);
+  font-size: clamp(1.7rem, 8vw, 2.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   text-decoration: none;
+}
+
+.menuNav a svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  align-self: center;
+  color: var(--color-accent);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.menuNav a:active svg {
+  transform: translateX(4px);
+}
+
+.menuIndex {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--color-text-muted);
+}
+
+.menuFoot {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: stretch;
+  text-align: center;
+}
+
+.menuFoot p {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+@media (--motion-reduce) {
+  .menu,
+  .menuNav li,
+  .menuFoot {
+    transition: none;
+  }
 }
 
 @media (--bp-lg-down) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { Button, Container } from "@/components/ui";
 import { brand, navigation, primaryCta } from "@/content/site";
 import { cx } from "@/lib/cx";
@@ -12,6 +12,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuId = useId();
+  const closeRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   // Section links live on the home page; from other pages they lead back to it.
   // The enquiry form is on every page, so that link stays local.
@@ -34,8 +35,21 @@ export function SiteHeader() {
     };
   }, []);
 
+  // Freeze the page behind the open menu and put focus inside it
+  useEffect(() => {
+    if (!open) return;
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = "hidden";
+    closeRef.current?.focus();
+    return () => {
+      root.style.overflow = previous;
+    };
+  }, [open]);
+
   return (
-    <header id="top" className={cx(styles.header, scrolled && styles.scrolled)}>
+    <>
+      <header id="top" className={cx(styles.header, scrolled && styles.scrolled)}>
       <Container className={styles.row}>
         <a
           className={styles.mark}
@@ -68,15 +82,51 @@ export function SiteHeader() {
           </button>
         </nav>
       </Container>
-      <Container>
-        <nav id={menuId} className={styles.mobileNav} aria-label="Mobile" hidden={!open}>
-          {[...navigation, primaryCta].map((link) => (
-            <a key={link.href} href={resolve(link.href)} onClick={() => setOpen(false)}>
-              {link.label}
-            </a>
-          ))}
-        </nav>
-      </Container>
     </header>
+      <div
+        id={menuId}
+        className={cx(styles.menu, open && styles.menuOpen)}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        data-lenis-prevent
+        inert={!open}
+      >
+        <div className={styles.menuBar}>
+          <a className={styles.mark} href={onHome ? "#top" : "/"} onClick={() => setOpen(false)}>
+            <span className={styles.wordmark}>
+              {brand.name.toLowerCase()}
+              <i className={styles.stop} aria-hidden="true" />
+            </span>
+          </a>
+          <button ref={closeRef} type="button" className={styles.menuButton} onClick={() => setOpen(false)}>
+            Close
+          </button>
+        </div>
+        <nav className={styles.menuNav} aria-label="Mobile">
+          <ol>
+            {navigation.map((link, index) => (
+              <li key={link.href} style={{ "--i": index } as CSSProperties}>
+                <a href={resolve(link.href)} onClick={() => setOpen(false)}>
+                  <span className={styles.menuIndex} aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{link.label}</span>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+                    <path d="M2 8h11M9 4l4 4-4 4" />
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+        <div className={styles.menuFoot} style={{ "--i": navigation.length } as CSSProperties}>
+          <Button href={resolve(primaryCta.href)} withArrow onClick={() => setOpen(false)}>
+            {primaryCta.label}
+          </Button>
+          <p>{brand.descriptor}</p>
+        </div>
+      </div>
+    </>
   );
 }
