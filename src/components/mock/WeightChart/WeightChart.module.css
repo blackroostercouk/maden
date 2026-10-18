@@ -1,0 +1,48 @@
+.chart {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--font-size-ui-md);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(96px, 8.5rem) minmax(0, 1fr) 54px;
+  gap: var(--space-2-5);
+  align-items: center;
+}
+
+.row b {
+  text-align: right;
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.bar {
+  display: block;
+  height: 10px;
+  width: calc(var(--w) * 100%);
+  border-radius: var(--radius-sm);
+  background: var(--color-weight-bar);
+}
+
+.total,
+.ours {
+  border-top: var(--border-width) solid var(--color-card-border);
+  padding-top: var(--space-2);
+}
+
+.total {
+  font-weight: var(--font-weight-semibold);
+}
+
+.ours span {
+  font-weight: var(--font-weight-semibold);
+}
+
+.ours .bar {
+  background: var(--color-positive);
+}
+
+.ours b {
+  color: var(--color-positive);
+}

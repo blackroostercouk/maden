@@ -1,0 +1,29 @@
+.line {
+  display: grid;
+  grid-template-columns: var(--width-thumb) minmax(0, 1fr) auto;
+  gap: var(--space-2-5);
+  align-items: center;
+}
+
+.thumb {
+  width: var(--width-thumb);
+  height: var(--width-thumb);
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  background: var(--color-card-border);
+}
+
+.copy {
+  display: grid;
+  min-width: 0;
+}
+
+.meta {
+  color: var(--color-card-muted);
+  font-size: var(--font-size-ui-sm);
+}
+
+.value {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}

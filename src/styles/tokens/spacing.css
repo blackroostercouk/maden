@@ -1,0 +1,45 @@
+/*
+ * Spacing tokens
+ * ---------------------------------------------------------------
+ * 1. Fixed scale on a 4px base (--space-1 = 4px). Use for small,
+ *    component-level gaps and padding.
+ * 2. Fluid layout spacing (--space-*-fluid). Use for gaps between
+ *    blocks and sections, so rhythm scales with the screen.
+ */
+
+:root {
+  /* 1. Fixed scale */
+  --space-0: 0;
+  --space-px: 1px;
+  --space-0-5: 0.125rem; /*  2px */
+  --space-1: 0.25rem; /*  4px */
+  --space-1-5: 0.375rem; /*  6px */
+  --space-2: 0.5rem; /*  8px */
+  --space-2-5: 0.625rem; /* 10px */
+  --space-3: 0.75rem; /* 12px */
+  --space-3-5: 0.875rem; /* 14px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-7: 1.75rem; /* 28px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+
+  /* 2. Fluid layout spacing */
+  --space-section-fluid: clamp(5rem, 10vw, 15rem); /* between sections */
+  --space-block-fluid: clamp(3rem, 5vw, 8rem); /* heading block → content */
+  --space-stack-fluid: clamp(3rem, 6vw, 7rem); /* between large blocks inside a section */
+  --space-column-fluid: clamp(2rem, 5vw, 9rem); /* between layout columns */
+  --space-grid-fluid: clamp(0.8rem, 1.4vw, 2rem); /* between cards in a grid */
+  --space-row-fluid: clamp(1.2rem, 2vw, 2rem); /* list row padding */
+  --space-panel-fluid: clamp(1.6rem, 3.4vw, 5rem); /* inside large panels */
+  --space-inset-fluid: clamp(1.5rem, 4vw, 4rem); /* inside illustration panels */
+  --space-steps-fluid: clamp(3rem, 6vw, 8rem); /* between process steps */
+
+  /* Page gutter (also clears phone safe areas) */
+  --gutter-inline: clamp(16px, 5vw, 160px);
+  --gutter-left: max(var(--gutter-inline), env(safe-area-inset-left, 0px));
+  --gutter-right: max(var(--gutter-inline), env(safe-area-inset-right, 0px));
+}

@@ -1,0 +1,36 @@
+.list {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-2-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  margin-top: 0;
+}
+
+/* Sits on the raised section surface, so the card is the darker tone */
+.card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.index {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.14em;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-display-small);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-snug);
+  color: var(--color-accent);
+}

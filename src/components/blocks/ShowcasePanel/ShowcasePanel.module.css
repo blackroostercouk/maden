@@ -1,0 +1,51 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-grid-fluid);
+  margin-bottom: var(--space-stack-fluid);
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.span-5 {
+  grid-column: span 5;
+}
+.span-6 {
+  grid-column: span 6;
+}
+.span-7 {
+  grid-column: span 7;
+}
+.span-12 {
+  grid-column: 1 / -1;
+}
+
+.scene {
+  flex: 1;
+  padding-bottom: calc(var(--space-inset-fluid) + 5.5rem);
+}
+
+.caption {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: var(--z-overlay);
+  display: grid;
+  gap: var(--space-1-5);
+  padding: var(--space-panel-fluid) var(--space-row-fluid) var(--space-row-fluid);
+  padding-top: var(--space-16);
+  background: linear-gradient(0deg, var(--color-scrim-strong) 40%, transparent);
+}
+
+@media (--bp-md-down) {
+  .span-5,
+  .span-6,
+  .span-7 {
+    grid-column: 1 / -1;
+  }
+}

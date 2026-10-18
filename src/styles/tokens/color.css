@@ -1,0 +1,87 @@
+/*
+ * Colour tokens
+ * ---------------------------------------------------------------
+ * Two layers:
+ *   1. Palette   (--palette-*)  raw values. Never used in components.
+ *   2. Semantic  (--color-*)    what components use, named by role.
+ * To re-theme the site, change the semantic layer only.
+ */
+
+:root {
+  /* 1. Palette ------------------------------------------------- */
+  --palette-ink-950: #0e110f;
+  --palette-ink-900: #161a17;
+  --palette-ink-800: #272d29;
+  --palette-ink-950-rgb: 14 17 15;
+
+  --palette-bone-100: #e6e9e2;
+  --palette-stone-400: #929b93;
+
+  --palette-moss-800: #20382a;
+  --palette-moss-700: #2e5a40;
+  --palette-fern-500: #5e9e76;
+  --palette-sage-300: #a9d4b2;
+  --palette-sage-200: #b6e0be;
+
+  --palette-paper-50: #f1f4ef;
+  --palette-paper-0: #ffffff;
+  --palette-paper-line: #dce3db;
+  --palette-paper-ink: #131714;
+  --palette-paper-muted: #5d675e;
+
+  --palette-leaf-700: #2f6b45;
+  --palette-leaf-100: #dceedf;
+
+  --palette-rust-700: #9a4a2e;
+  --palette-rust-100: #f3e3da;
+  --palette-blush-300: #d9b8a8;
+  --palette-coral-300: #e39a8c;
+
+  --palette-swatch-sage: #9db09a;
+  --palette-swatch-oat: #b9b4aa;
+  --palette-swatch-navy: #2d3a45;
+  --palette-swatch-clay: #c7a27a;
+
+  /* 2. Semantic: page ------------------------------------------ */
+  --color-bg: var(--palette-ink-950);
+  --color-surface: var(--palette-ink-900);
+  --color-surface-accent: var(--palette-moss-800);
+  --color-border: var(--palette-ink-800);
+
+  --color-text: var(--palette-bone-100);
+  --color-text-muted: var(--palette-stone-400);
+  --color-text-soft: color-mix(in srgb, var(--palette-bone-100) 82%, var(--palette-stone-400));
+
+  --color-accent: var(--palette-sage-300);
+  --color-accent-strong: var(--palette-fern-500);
+  --color-on-accent: var(--palette-ink-950);
+
+  --color-danger: var(--palette-coral-300);
+  --color-focus: var(--palette-sage-300);
+  --color-selection-bg: var(--palette-sage-300);
+  --color-selection-text: var(--palette-ink-950);
+
+  /* Overlays used on photography and sticky chrome */
+  --color-scrim: rgb(var(--palette-ink-950-rgb) / 0.55);
+  --color-scrim-strong: rgb(var(--palette-ink-950-rgb) / 0.92);
+  --color-header-bg: rgb(var(--palette-ink-950-rgb) / 0.78);
+
+  /* 2. Semantic: interface mock-ups (light "app" cards) --------- */
+  --color-card-bg: var(--palette-paper-50);
+  --color-card-raised: var(--palette-paper-0);
+  --color-card-text: var(--palette-paper-ink);
+  --color-card-muted: var(--palette-paper-muted);
+  --color-card-border: var(--palette-paper-line);
+
+  --color-positive: var(--palette-leaf-700);
+  --color-positive-soft: var(--palette-leaf-100);
+  --color-warning: var(--palette-rust-700);
+  --color-warning-soft: var(--palette-rust-100);
+  --color-weight-bar: var(--palette-blush-300);
+
+  /* 2. Semantic: WebGL weave (read by the canvas at runtime) ---- */
+  --color-weave-deep: var(--palette-moss-700);
+  --color-weave-light: var(--palette-sage-200);
+
+  color-scheme: dark;
+}

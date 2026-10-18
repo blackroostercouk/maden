@@ -1,0 +1,24 @@
+.button {
+  display: block;
+  padding: var(--space-2-5);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-ui-base);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+}
+
+.solid {
+  background: var(--color-card-text);
+  color: var(--color-card-bg);
+}
+
+.outline {
+  border: var(--border-width) solid var(--color-card-border);
+  color: var(--color-card-text);
+}
+
+.pill {
+  background: var(--color-card-text);
+  color: var(--color-card-bg);
+  border-radius: var(--radius-pill);
+}

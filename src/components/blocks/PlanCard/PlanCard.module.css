@@ -1,0 +1,42 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-grid-fluid);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--space-6);
+  padding: var(--space-panel-fluid);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.featured {
+  background: var(--color-surface-accent);
+}
+
+.featured::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -40% 30%;
+  height: 80%;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-accent-strong) 30%, transparent),
+    transparent
+  );
+}
+
+.outlined {
+  border: var(--border-hairline);
+}
+
+@media (--bp-md-down) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

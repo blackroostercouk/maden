@@ -1,0 +1,14 @@
+.offset {
+  justify-self: end;
+}
+
+.strike {
+  margin-right: var(--space-1);
+  color: var(--color-card-muted);
+  font-size: var(--font-size-ui-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+.price {
+  color: var(--color-card-muted);
+}

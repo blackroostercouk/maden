@@ -1,0 +1,14 @@
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1-5);
+}
+
+.chip {
+  padding: 3px var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-positive-soft);
+  color: var(--color-positive);
+  font-size: var(--font-size-ui-2xs);
+  font-weight: var(--font-weight-medium);
+}

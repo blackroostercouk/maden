@@ -1,0 +1,35 @@
+.frame {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-surface);
+  max-width: 100%;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+}
+
+.rounded {
+  border-radius: var(--radius-lg);
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Taller than its frame so it can drift without showing an edge */
+.parallax {
+  top: -9% !important;
+  height: 118% !important;
+  will-change: transform;
+}
+
+.scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 55%, var(--color-scrim));
+}

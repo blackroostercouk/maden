@@ -1,0 +1,49 @@
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-below);
+  pointer-events: none;
+}
+
+.rings {
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      color-mix(in srgb, var(--color-accent-strong) 22%, transparent),
+      transparent 55%
+    ),
+    repeating-radial-gradient(
+      circle at 50% 42%,
+      transparent 0 58px,
+      color-mix(in srgb, var(--color-accent-strong) 30%, transparent) 59px 60px
+    ),
+    var(--color-surface-accent);
+  mask-image: radial-gradient(ellipse at 50% 42%, #000 35%, rgb(0 0 0 / 0.35) 75%);
+}
+
+.weave {
+  overflow: hidden;
+}
+
+.weave::before {
+  content: "";
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  top: 10%;
+  height: 150%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-accent-strong) 38%, transparent) 0 1px,
+      transparent 1px 22px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--color-accent-strong) 22%, transparent) 0 1px,
+      transparent 1px 22px
+    );
+  transform: perspective(900px) rotateX(62deg) rotateZ(-14deg);
+  transform-origin: 50% 0;
+  mask-image: radial-gradient(ellipse 60% 55% at 62% 40%, #000 30%, transparent 75%);
+}

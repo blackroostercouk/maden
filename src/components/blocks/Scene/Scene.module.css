@@ -1,0 +1,35 @@
+.scene {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  min-height: var(--height-panel);
+  padding: var(--space-inset-fluid);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.align-center {
+  align-content: center;
+}
+.align-top {
+  align-content: start;
+}
+.align-bottom {
+  align-content: end;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-below);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: var(--color-scrim);
+  opacity: 0.64;
+}

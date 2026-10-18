@@ -1,0 +1,33 @@
+.section {
+  padding-top: clamp(5rem, 10vw, 14rem);
+}
+
+.lead {
+  max-width: 30ch;
+  line-height: var(--line-height-title);
+}
+
+.lead em {
+  color: var(--color-accent);
+}
+
+.figure {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-block-fluid);
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+@media (--bp-sm-down) {
+  .photo {
+    aspect-ratio: 4 / 3 !important;
+  }
+}

@@ -1,0 +1,27 @@
+.section {
+  position: relative;
+}
+
+.spacing-default {
+  padding-block: var(--space-section-fluid);
+}
+
+.spacing-flush-top {
+  padding-block: 0 var(--space-section-fluid);
+}
+
+.spacing-flush-bottom {
+  padding-block: var(--space-section-fluid) 0;
+}
+
+.spacing-none {
+  padding-block: 0;
+}
+
+.raised {
+  background: var(--color-surface);
+}
+
+.bordered {
+  border-block: var(--border-hairline);
+}

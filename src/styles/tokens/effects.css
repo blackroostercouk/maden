@@ -1,0 +1,28 @@
+/*
+ * Effect and motion tokens: shadows, blur, easing, durations
+ * ---------------------------------------------------------------
+ * GSAP timings live in src/design/motion.ts and mirror these values.
+ */
+
+:root {
+  /* Shadows */
+  --shadow-photo: 0 40px 80px -30px rgb(0 0 0 / 0.7);
+  --shadow-card: 0 30px 60px -20px rgb(0 0 0 / 0.75), 0 0 0 1px rgb(255 255 255 / 0.04);
+  --shadow-device:
+    0 40px 80px -30px rgb(0 0 0 / 0.8),
+    0 0 0 1px color-mix(in srgb, var(--palette-fern-500) 35%, transparent);
+  --shadow-knob: 0 1px 2px rgb(0 0 0 / 0.2);
+
+  /* Blur */
+  --blur-header: 10px;
+
+  /* Easing */
+  --ease-out: cubic-bezier(0.22, 0.8, 0.2, 1);
+  --ease-standard: ease;
+
+  /* Durations */
+  --duration-fast: 0.3s;
+  --duration-base: 0.45s;
+  --duration-slow: 0.7s;
+  --duration-slower: 1.6s;
+}

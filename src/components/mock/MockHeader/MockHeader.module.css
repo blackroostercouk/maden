@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.kicker {
+  font-size: var(--font-size-ui-xs);
+  color: var(--color-card-muted);
+  letter-spacing: 0.02em;
+}
+
+.app {
+  font-size: 13.5px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-round);
+  background: var(--color-positive);
+  box-shadow: 0 0 0 3px var(--color-positive-soft);
+}
+
+.appIcon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-lg);
+  background: var(--color-card-text);
+  color: var(--color-card-bg);
+  font: var(--font-style-accent) var(--font-weight-medium) 13px/1 var(--font-display);
+}
+
+.trailing {
+  margin-left: auto;
+}

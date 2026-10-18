@@ -1,0 +1,131 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: var(--height-hero-min);
+  overflow: hidden;
+  border-bottom: var(--border-hairline);
+}
+
+/* Fade the backdrop and weave into the page behind the copy */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-below);
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-bg) 0%,
+      color-mix(in srgb, var(--color-bg) 70%, transparent) 34%,
+      transparent 62%
+    ),
+    linear-gradient(0deg, var(--color-bg) 0%, transparent 38%);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--space-12) var(--space-column-fluid);
+  align-items: center;
+  padding-block: clamp(5.5rem, 12vh, 11rem) clamp(3rem, 7vh, 7rem);
+}
+
+.copy {
+  display: grid;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Stage: a photograph with interface cards floating over it */
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1264 / 980;
+}
+
+.photo {
+  position: absolute;
+  inset: 0 0 14% 8%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-photo);
+}
+
+.sync {
+  position: absolute;
+  top: 6%;
+  right: -2%;
+  /* The card inside is zoomed on wide displays, so its box must grow with it or the text is squeezed */
+  width: min(calc(var(--width-card-sm) * var(--card-zoom)), 40%);
+}
+
+.checkout {
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  width: min(calc(var(--width-card-md) * var(--card-zoom)), 52%);
+}
+
+@media (--bp-xl-up) {
+  .sync {
+    width: min(calc(var(--width-card-sm) * var(--card-zoom)), 34%);
+  }
+
+  .checkout {
+    width: min(calc(var(--width-card-md) * var(--card-zoom)), 46%);
+  }
+}
+
+@media (--bp-md-down) {
+  .hero::after {
+    background: linear-gradient(
+      0deg,
+      var(--color-bg) 0%,
+      color-mix(in srgb, var(--color-bg) 75%, transparent) 55%,
+      color-mix(in srgb, var(--color-bg) 30%, transparent) 100%
+    );
+  }
+
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stage {
+    max-width: 620px;
+    margin-inline: auto;
+  }
+}
+
+@media (--bp-sm-down) {
+  .stage {
+    display: grid;
+    gap: var(--space-3);
+    aspect-ratio: auto;
+  }
+
+  .photo {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .checkout {
+    position: relative;
+    inset: auto;
+    width: auto;
+  }
+
+  .sync {
+    display: none;
+  }
+}

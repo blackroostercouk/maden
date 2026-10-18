@@ -1,0 +1,31 @@
+.control {
+  width: 100%;
+  padding: var(--space-2) 0 var(--space-3);
+  border: 0;
+  border-bottom: var(--border-hairline);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+  appearance: none;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.control::placeholder {
+  color: color-mix(in srgb, var(--color-text-muted) 70%, transparent);
+}
+
+.control:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent);
+}
+
+.control:focus-visible {
+  box-shadow: 0 1px 0 0 var(--color-accent);
+}
+
+.area {
+  min-height: 8.5rem;
+  resize: vertical;
+  line-height: 1.55;
+}

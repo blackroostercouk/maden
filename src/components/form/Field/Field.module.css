@@ -1,0 +1,32 @@
+.field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.label {
+  padding: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.error {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+.error:empty {
+  display: none;
+}
+
+/* Underline controls turn red when the field is invalid */
+.invalid :is(input, textarea, select) {
+  border-bottom-color: var(--color-danger);
+}

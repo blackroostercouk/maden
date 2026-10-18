@@ -1,0 +1,124 @@
+.heading {
+  margin: 0;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-snug);
+  text-wrap: balance;
+}
+
+.family-display {
+  font-family: var(--font-display);
+}
+
+/* Smaller display headings and italics carry more weight so the hairlines stay legible */
+.family-display.size-md,
+.family-display.size-lg,
+.family-display.size-xl {
+  font-weight: var(--font-weight-display-small);
+}
+
+.family-display.italic {
+  font-weight: var(--font-weight-display-italic);
+}
+
+.family-body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.italic {
+  font-style: var(--font-style-accent);
+}
+
+.line {
+  display: block;
+}
+
+/* Word wrappers for the reveal animation */
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.wordInner {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Sizes: each maps to one font-size token and its matching line height */
+.size-xs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-ui);
+}
+.size-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-ui);
+}
+.size-md {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-title);
+}
+.size-lg {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-title);
+}
+.size-xl {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-snug);
+}
+.size-2xl {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-heading);
+}
+.size-3xl {
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+.size-4xl {
+  font-size: var(--font-size-4xl);
+  line-height: 0.9;
+  letter-spacing: var(--letter-spacing-tight);
+}
+.size-5xl {
+  font-size: var(--font-size-5xl);
+  line-height: 0.85;
+  letter-spacing: var(--letter-spacing-tightest);
+}
+
+/* Tones */
+.tone-default {
+  color: var(--color-text);
+}
+.tone-muted {
+  color: var(--color-text-muted);
+}
+.tone-soft {
+  color: var(--color-text-soft);
+}
+.tone-accent {
+  color: var(--color-accent);
+}
+.tone-danger {
+  color: var(--color-danger);
+}
+
+/* Set last so they win over the size-based weights above. Also used on single lines. */
+.weight-light {
+  font-weight: var(--font-weight-light);
+}
+
+.weight-regular {
+  font-weight: var(--font-weight-regular);
+}
+
+.weight-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.weight-semibold {
+  font-weight: var(--font-weight-semibold);
+}

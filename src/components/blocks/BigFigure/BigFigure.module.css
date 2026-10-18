@@ -1,0 +1,15 @@
+.figure {
+  display: grid;
+  align-content: start;
+  gap: var(--space-6);
+}
+
+.value {
+  font-family: var(--font-display);
+  font-style: var(--font-style-accent);
+  font-size: var(--font-size-4xl);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--color-accent);
+  font-variant-numeric: lining-nums;
+}

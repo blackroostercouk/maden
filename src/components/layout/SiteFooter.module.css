@@ -1,0 +1,32 @@
+.footer {
+  padding-block: clamp(4rem, 8vw, 6rem) var(--space-8);
+  overflow: hidden;
+}
+
+.wordmark {
+  margin: 0 0 var(--space-10);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-5xl);
+  line-height: 0.85;
+  letter-spacing: var(--letter-spacing-tightest);
+}
+
+.wordmark em {
+  color: var(--color-accent);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-8);
+  padding-top: var(--space-5);
+  border-top: var(--border-hairline);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.meta p {
+  max-width: var(--measure-wide);
+}

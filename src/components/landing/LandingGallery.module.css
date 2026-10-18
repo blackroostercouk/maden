@@ -1,0 +1,50 @@
+.header {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+  margin-bottom: var(--space-12);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-grid-fluid);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The middle picture sits lower so the row has a rhythm */
+.item:nth-child(2) {
+  margin-top: var(--space-16);
+}
+
+.figure {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.caption {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  color: var(--color-text-soft);
+  font-size: var(--font-size-sm);
+}
+
+.number {
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.14em;
+}
+
+@media (--bp-md-down) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .item:nth-child(2) {
+    margin-top: 0;
+  }
+}

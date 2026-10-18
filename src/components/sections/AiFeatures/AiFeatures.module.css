@@ -1,0 +1,32 @@
+.scene {
+  min-height: clamp(480px, 40vw, 1000px);
+}
+
+.assistant {
+  margin-right: 12%;
+}
+
+.chat {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  width: min(270px, 62%);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2);
+}
+
+@media (--bp-sm-down) {
+  .assistant {
+    margin: 0;
+  }
+
+  .chat {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+}

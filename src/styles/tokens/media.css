@@ -1,0 +1,28 @@
+/*
+ * Breakpoint tokens
+ * ---------------------------------------------------------------
+ * Use these in any CSS file:  @media (--bp-md-down) { ... }
+ * They are compiled to plain media queries by postcss-custom-media
+ * (see postcss.config.mjs). Mirror: src/design/breakpoints.ts
+ *
+ *   xs   480px   small phones
+ *   sm   640px   phones
+ *   md   900px   tablets, stacked layouts below this
+ *   lg  1080px   full navigation appears above this
+ *   xl  1700px   large desktop
+ *   2xl 2100px   wide desktop
+ *   3xl 2500px   ultra-wide
+ */
+
+@custom-media --bp-xs-down (max-width: 480px);
+@custom-media --bp-sm-down (max-width: 640px);
+@custom-media --bp-md-down (max-width: 900px);
+@custom-media --bp-lg-down (max-width: 1080px);
+
+@custom-media --bp-xl-up (min-width: 1700px);
+@custom-media --bp-2xl-up (min-width: 2100px);
+@custom-media --bp-3xl-up (min-width: 2500px);
+
+@custom-media --motion-ok (prefers-reduced-motion: no-preference);
+@custom-media --motion-reduce (prefers-reduced-motion: reduce);
+@custom-media --pointer-fine (pointer: fine);

@@ -1,0 +1,11 @@
+/* The photograph beside the problem cards stays in view while the cards scroll past */
+.stickyPhoto {
+  position: sticky;
+  top: calc(var(--height-header) + var(--space-10));
+}
+
+@media (--bp-md-down) {
+  .stickyPhoto {
+    position: static;
+  }
+}

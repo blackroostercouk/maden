@@ -1,0 +1,10 @@
+.aside {
+  position: sticky;
+  top: calc(var(--height-header) + var(--space-10));
+}
+
+@media (--bp-md-down) {
+  .aside {
+    position: static;
+  }
+}

@@ -1,0 +1,37 @@
+.card {
+  display: grid;
+  gap: var(--space-2-5);
+  padding: var(--space-3-5);
+  border-radius: var(--radius-2xl);
+  background: var(--color-card-bg);
+  color: var(--color-card-text);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-body);
+  font-size: var(--font-size-ui-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-ui);
+  will-change: transform;
+  /* Wide displays scale cards up (see --card-zoom in the layout tokens) */
+  zoom: var(--card-zoom);
+}
+
+.card b,
+.card strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+.width-sm {
+  width: min(var(--width-card-sm), 100%);
+}
+.width-md {
+  width: min(var(--width-card-md), 100%);
+}
+.width-lg {
+  width: min(var(--width-card-lg), 100%);
+}
+.width-xl {
+  width: min(var(--width-card-xl), 100%);
+}
+.width-full {
+  width: 100%;
+}

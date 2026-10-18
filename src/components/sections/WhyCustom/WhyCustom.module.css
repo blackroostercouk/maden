@@ -1,0 +1,7 @@
+.costs {
+  margin-top: var(--space-stack-fluid);
+}
+
+.chart {
+  max-width: 520px;
+}

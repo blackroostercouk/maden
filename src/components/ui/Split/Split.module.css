@@ -1,0 +1,29 @@
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, var(--split-left)) minmax(0, var(--split-right));
+  gap: var(--space-stack-fluid) var(--space-column-fluid);
+}
+
+.split > * {
+  min-width: 0;
+}
+
+.align-start {
+  align-items: start;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: end;
+}
+
+@media (--bp-md-down) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .reverse > :last-child {
+    order: -1;
+  }
+}

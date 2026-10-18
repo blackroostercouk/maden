@@ -1,0 +1,6 @@
+.eyebrow {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--color-accent);
+}

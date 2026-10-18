@@ -1,0 +1,13 @@
+.icon {
+  flex: none;
+}
+
+.size-sm {
+  width: var(--width-icon-sm);
+  height: var(--width-icon-sm);
+}
+
+.size-md {
+  width: var(--width-icon);
+  height: var(--width-icon);
+}

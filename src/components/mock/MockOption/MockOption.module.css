@@ -1,0 +1,19 @@
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 9px var(--space-2-5);
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-ui-md);
+}
+
+.option b {
+  white-space: nowrap;
+}
+
+.selected {
+  border-color: var(--color-positive);
+  background: color-mix(in srgb, var(--color-positive-soft) 55%, var(--color-card-bg));
+}

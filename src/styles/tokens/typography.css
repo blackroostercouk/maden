@@ -1,0 +1,84 @@
+/*
+ * Typography tokens
+ * ---------------------------------------------------------------
+ * Families come from next/font (see src/styles/fonts.ts), which sets
+ * --font-bodoni and --font-hanken on <html>.
+ *
+ * Size scale: fluid clamp() steps. Each step grows with the viewport
+ * up to very wide screens, so nothing caps at 1440px.
+ *   xs  captions, labels, small print
+ *   sm  secondary UI text
+ *   md  body copy
+ *   lg  lede paragraphs
+ *   xl  small headings, list titles
+ *   2xl section headings
+ *   3xl hero heading
+ *   4xl figure (big numbers)
+ *   5xl wordmark
+ */
+
+:root {
+  /* Families */
+  /* Display: Manrope for now. Bodoni Moda is still loaded; to switch back use
+     var(--font-bodoni), "Bodoni 72", "Didot", "Times New Roman", serif and set
+     --font-style-accent to italic. */
+  --font-display: var(--font-manrope), "Helvetica Neue", Arial, sans-serif;
+  /* Manrope has no italic, so accent lines are upright instead of a faked slant */
+  --font-style-accent: normal;
+  --font-body: var(--font-hanken), "Helvetica Neue", Arial, sans-serif;
+
+  /* Fluid size scale */
+  --font-size-xs: clamp(0.82rem, 0.76rem + 0.2vw, 1.05rem);
+  --font-size-sm: clamp(0.9rem, 0.84rem + 0.22vw, 1.15rem);
+  --font-size-md: clamp(1rem, 0.9rem + 0.3vw, 1.3rem);
+  --font-size-lg: clamp(1.2rem, 1.05rem + 0.55vw, 1.9rem);
+  --font-size-xl: clamp(1.6rem, 1.3rem + 1.15vw, 3.2rem);
+  --font-size-2xl: clamp(2.2rem, 1.5rem + 2.7vw, 5.6rem);
+  --font-size-3xl: clamp(3rem, 1.5rem + 4.6vw, 11rem);
+  --font-size-4xl: clamp(4rem, 2rem + 7vw, 13rem);
+  --font-size-5xl: clamp(4rem, 17vw, 30rem);
+
+  /* Fixed sizes for interface mock-ups (they imitate real app UI) */
+  --font-size-ui-2xs: 11px;
+  --font-size-ui-xs: 11.5px;
+  --font-size-ui-sm: 12px;
+  --font-size-ui-md: 12.5px;
+  --font-size-ui-base: 13px;
+  --font-size-ui-lg: 14px;
+  --font-size-ui-xl: 16px;
+  --font-size-ui-display: 30px;
+
+  /* Weights (variable fonts accept any value in range) */
+  --font-weight-light: 300;
+  --font-weight-book: 350;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Bodoni's hairlines thin out at small sizes and on dark backgrounds.
+     Display type below the large headings, and italics, get a little more weight. */
+  --font-weight-display-small: 500;
+  --font-weight-display-italic: 600;
+
+  /* Line heights */
+  --line-height-tight: 0.94;
+  --line-height-heading: 1.04;
+  --line-height-snug: 1.1;
+  --line-height-title: 1.25;
+  --line-height-ui: 1.4;
+  --line-height-lede: 1.45;
+  --line-height-body: 1.6;
+
+  /* Letter spacing */
+  --letter-spacing-tightest: -0.035em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-snug: -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.03em;
+  --letter-spacing-label: 0.04em;
+
+  /* Line length */
+  --measure-narrow: 40ch;
+  --measure: 62ch;
+  --measure-wide: 72ch;
+}

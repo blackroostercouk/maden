@@ -1,0 +1,25 @@
+.header {
+  display: grid;
+  gap: var(--space-6) var(--space-column-fluid);
+  margin-bottom: var(--space-block-fluid);
+}
+
+.split {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: end;
+}
+
+.split .eyebrow {
+  grid-column: 1 / -1;
+}
+
+.stacked {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: var(--measure-wide);
+}
+
+@media (--bp-md-down) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
