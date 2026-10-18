@@ -121,7 +121,12 @@ export function SiteHeader() {
           </ol>
         </nav>
         <div className={styles.menuFoot} style={{ "--i": navigation.length } as CSSProperties}>
-          <Button href={resolve(primaryCta.href)} withArrow onClick={() => setOpen(false)}>
+          <Button
+            href={resolve(primaryCta.href)}
+            withArrow
+            className={styles.menuCta}
+            onClick={() => setOpen(false)}
+          >
             {primaryCta.label}
           </Button>
           <p>{brand.descriptor}</p>
