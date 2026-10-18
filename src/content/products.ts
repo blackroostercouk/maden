@@ -40,7 +40,7 @@ export const productCopy = {
   indexEyebrow: "Ready to install",
   indexTitle: "Four apps we have already built.",
   indexIntro:
-    "Each one is finished, tested and installed privately on your store, then set up around how you sell. Need it different? We change it.",
+    "Each one is finished, tested and installed privately on your store, then adapted around how you sell. Need it different? We change it.",
   indexMetaTitle: "Ready-made Shopify apps",
   indexMetaDescription:
     "Membership, gifts, favourites and an AI assistant: finished private Shopify apps, installed on your store and set up around how you sell.",
@@ -65,9 +65,9 @@ export const productCopy = {
   exampleEyebrow: "In the store",
   pricing: "Pricing on request",
   secondaryCta: "How it comes to your store",
-  customTitle: "Need it to work differently?",
+  customTitle: "Every app is adapted to your store.",
   customText:
-    "These are starting points. We adapt each one to your rules, or build something new beside it.",
+    "Each one is a starting point, not a fixed product. We shape it around your products, markets and rules, and build something new beside it if you need more. No tiers, no upgrade prompts.",
   customCta: "See custom apps",
   steps: [
     {
