@@ -9,7 +9,8 @@ type ScrollTo = (target: HTMLElement | number, onArrive: () => void) => void;
 /**
  * Handle in-page links with the active scroll engine.
  * Fires "moden:navigate" on click and "moden:arrive" once the
- * scroll has finished, both with { hash } as detail.
+ * scroll has finished, both with { hash } as detail. A link to a section
+ * the page does not have fires "moden:goto" with the home page address.
  */
 function bindAnchorLinks(scrollTo: ScrollTo) {
   const onClick = (event: MouseEvent) => {
@@ -18,7 +19,14 @@ function bindAnchorLinks(scrollTo: ScrollTo) {
     if (!link) return;
     const hash = link.getAttribute("href") ?? "";
     const target = hash === "#top" ? null : document.getElementById(hash.slice(1));
-    if (hash !== "#top" && !target) return;
+    if (hash !== "#top" && !target) {
+      // Section links point at the home page; from a page without that section, go there
+      if (hash.length > 1 && window.location.pathname !== "/") {
+        event.preventDefault();
+        window.dispatchEvent(new CustomEvent("moden:goto", { detail: { href: `/${hash}` } }));
+      }
+      return;
+    }
     event.preventDefault();
     const detail = { hash };
     scrollTo(target ?? 0, () => window.dispatchEvent(new CustomEvent("moden:arrive", { detail })));

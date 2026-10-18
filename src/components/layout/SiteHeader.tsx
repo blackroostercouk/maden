@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { Button, Container } from "@/components/ui";
 import { brand, navigation, primaryCta } from "@/content/site";
@@ -14,6 +14,7 @@ export function SiteHeader() {
   const menuId = useId();
   const closeRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
   // Section links live on the home page; from other pages they lead back to it.
   // The enquiry form is on every page, so that link stays local.
   const onHome = pathname === "/";
@@ -24,16 +25,22 @@ export function SiteHeader() {
     const onScroll = () => setScrolled(window.scrollY > 20);
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
     const onNavigate = () => setOpen(false);
+    const onGoto = (event: Event) => {
+      setOpen(false);
+      router.push((event as CustomEvent<{ href: string }>).detail.href);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("keydown", onKey);
     window.addEventListener("moden:navigate", onNavigate);
+    window.addEventListener("moden:goto", onGoto);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("moden:navigate", onNavigate);
+      window.removeEventListener("moden:goto", onGoto);
     };
-  }, []);
+  }, [router]);
 
   // Freeze the page behind the open menu and put focus inside it
   useEffect(() => {
@@ -50,39 +57,39 @@ export function SiteHeader() {
   return (
     <>
       <header id="top" className={cx(styles.header, scrolled && styles.scrolled)}>
-      <Container className={styles.row}>
-        <a
-          className={styles.mark}
-          href={onHome ? "#top" : "/"}
-          aria-label={`${brand.name}, back to top`}
-        >
-          <span className={styles.wordmark}>
-            {brand.name.toLowerCase()}
-            <i className={styles.stop} aria-hidden="true" />
-          </span>{" "}
-          <small className={styles.descriptor}>{brand.descriptor}</small>
-        </a>
-        <nav className={styles.nav} aria-label="Main">
-          {navigation.map((link) => (
-            <a key={link.href} href={resolve(link.href)} className={styles.link}>
-              {link.short ?? link.label}
-            </a>
-          ))}
-          <Button href={resolve(primaryCta.href)} size="sm" className={styles.cta}>
-            {primaryCta.label}
-          </Button>
-          <button
-            type="button"
-            className={styles.menuButton}
-            aria-expanded={open}
-            aria-controls={menuId}
-            onClick={() => setOpen((value) => !value)}
+        <Container className={styles.row}>
+          <a
+            className={styles.mark}
+            href={onHome ? "#top" : "/"}
+            aria-label={`${brand.name}, back to top`}
           >
-            {open ? "Close" : "Menu"}
-          </button>
-        </nav>
-      </Container>
-    </header>
+            <span className={styles.wordmark}>
+              {brand.name.toLowerCase()}
+              <i className={styles.stop} aria-hidden="true" />
+            </span>{" "}
+            <small className={styles.descriptor}>{brand.descriptor}</small>
+          </a>
+          <nav className={styles.nav} aria-label="Main">
+            {navigation.map((link) => (
+              <a key={link.href} href={resolve(link.href)} className={styles.link}>
+                {link.short ?? link.label}
+              </a>
+            ))}
+            <Button href={resolve(primaryCta.href)} size="sm" className={styles.cta}>
+              {primaryCta.label}
+            </Button>
+            <button
+              type="button"
+              className={styles.menuButton}
+              aria-expanded={open}
+              aria-controls={menuId}
+              onClick={() => setOpen((value) => !value)}
+            >
+              {open ? "Close" : "Menu"}
+            </button>
+          </nav>
+        </Container>
+      </header>
       <div
         id={menuId}
         className={cx(styles.menu, open && styles.menuOpen)}
@@ -99,7 +106,12 @@ export function SiteHeader() {
               <i className={styles.stop} aria-hidden="true" />
             </span>
           </a>
-          <button ref={closeRef} type="button" className={styles.menuButton} onClick={() => setOpen(false)}>
+          <button
+            ref={closeRef}
+            type="button"
+            className={styles.menuButton}
+            onClick={() => setOpen(false)}
+          >
             Close
           </button>
         </div>
@@ -112,7 +124,13 @@ export function SiteHeader() {
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span>{link.label}</span>
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    aria-hidden="true"
+                  >
                     <path d="M2 8h11M9 4l4 4-4 4" />
                   </svg>
                 </a>
